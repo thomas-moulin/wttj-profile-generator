@@ -4,8 +4,8 @@ import { defaultCompanyData } from "./defaultData";
 
 export const getCompanyDataFromUrl = (): CompanyData => {
   try {
-    const url = window.location.pathname;
-    const encodedData = url.split("/").pop();
+    const urlParams = new URLSearchParams(window.location.search);
+    const encodedData = urlParams.get("data");
 
     if (!encodedData) {
       return defaultCompanyData;
