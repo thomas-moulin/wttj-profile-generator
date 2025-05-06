@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { getCompanyDataFromUrl } from "./utils/urlDecoder";
 import Navbar from "./components/Navbar";
 import CompanyHeader from "./components/CompanyHeader";
@@ -16,12 +16,29 @@ import JobsSection from "./components/JobsSection";
 import ArticlesSection from "./components/ArticlesSection";
 import GallerySection from "./components/GallerySection";
 import PeopleBreakdown from "./components/PeopleBreakdown";
+import { CompanyData } from "./types";
+import { defaultCompanyData } from "./utils/defaultData";
 
 const App: React.FC = () => {
-  const companyData = getCompanyDataFromUrl();
+  const [companyData, setCompanyData] = useState<CompanyData>(defaultCompanyData);
+  const [isLoading, setIsLoading] = useState(true);
 
-    // Debug logging - remove after fixing issues
-    console.log("Company data loaded:", companyData);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const data = await getCompanyDataFromUrl();
+        setCompanyData(data);
+        console.log("Company data loaded:", data);
+      } catch (error) {
+        console.error("Error loading company data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     document.title = `${companyData.name} | Company Profile`;
@@ -41,6 +58,14 @@ const App: React.FC = () => {
     { id: "jobs", name: "Jobs" },
     { id: "gallery", name: "Gallery" },
   ];
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-[#FBF9F7] flex items-center justify-center">
+        <p className="text-xl font-medium">Loading company data...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#FBF9F7]">
