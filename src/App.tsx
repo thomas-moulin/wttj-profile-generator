@@ -20,6 +20,9 @@ import PeopleBreakdown from "./components/PeopleBreakdown";
 const App: React.FC = () => {
   const companyData = getCompanyDataFromUrl();
 
+    // Debug logging - remove after fixing issues
+    console.log("Company data loaded:", companyData);
+
   useEffect(() => {
     document.title = `${companyData.name} | Company Profile`;
   }, [companyData.name]);
