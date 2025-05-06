@@ -11,8 +11,27 @@ export function getCompanyDataFromUrl(): CompanyData {
 
     console.log("URL location:", window.location.href);
 
-    // Try to get data from hash fragment first (format: #data=base64_encoded_json)
+    // Add this before your existing hash detection:
+    const fullUrl = window.location.href;
+    console.log("Full URL:", fullUrl);
+
     let encodedData = null;
+
+    // Try extracting hash manually
+    const hashIndex = fullUrl.indexOf('#');
+    if (hashIndex > -1) {
+      const manuallyExtractedHash = fullUrl.substring(hashIndex);
+      console.log("Manually extracted hash:", manuallyExtractedHash.substring(0, 20) + "...");
+      
+      // Use this instead
+      const altHashMatch = manuallyExtractedHash.match(/data=([^&]+)/);
+      if (altHashMatch && altHashMatch[1]) {
+        encodedData = altHashMatch[1];
+        console.log("Found data using alternative method, length:", encodedData.length);
+      }
+    }
+
+    // Try to get data from hash fragment first (format: #data=base64_encoded_json)
     
     if (window.location.hash) {
       console.log("Hash detected:", window.location.hash.substring(0, 20) + "...");
