@@ -6,7 +6,7 @@ interface LeadershipSectionProps {
       name: string;
       title: string;
       background: string;
-      photoUrl: string;
+      linkedinUrl: string;
     }[];
   };
 }
@@ -27,7 +27,16 @@ const LeadershipSection: React.FC<LeadershipSectionProps> = ({
           <div key={index}>
             <div className="flex items-start space-x-4 mb-4">
               <div>
-                <h3 className="font-medium">{leader.name}</h3>
+                <h3 className="font-medium">
+                  <a 
+                    href={leader.linkedinUrl} 
+                    className="text-black hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {leader.name}
+                  </a>
+                </h3>
                 <p className="text-gray-600">{leader.title}</p>
                 <p className="text-sm text-gray-700 mt-2">
                   {leader.background}
