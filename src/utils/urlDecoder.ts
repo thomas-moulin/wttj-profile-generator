@@ -20,18 +20,29 @@ export const getCompanyDataFromUrl = async (): Promise<CompanyData> => {
       return defaultCompanyData;
     }
     
-    // Fetch data from S3 using the company_id as the key
-    const downloadResult = await downloadData({
-      path: `${companyId}.json`,
-      options: {
-        bucket: 'wttj-datascience-junglelabs'
-        // Optional: Add caching options or other parameters if needed
-      }
-    }).result;
+    console.log("Fetching data for company ID:", companyId);
+
     
-    // Parse the JSON data from the file
-    const jsonData = await downloadResult.body.json();
-    return jsonData as CompanyData;
+    
+    try {
+      // Fetch data from S3 using the company_id as the key
+      const downloadResult = await downloadData({
+        path: `${companyId}.json`,
+        options: {
+          // Alternatively, provide bucket name from console and associated region
+          bucket: {
+            bucketName: 'wttj-datascience-junglelabs',
+            region: 'eu-central-1',
+          }
+          }}).result;
+      
+      // Parse the JSON data from the file
+      const jsonData = await downloadResult.body.json();
+      return jsonData as CompanyData;
+    } catch (storageError) {
+      console.error("Storage error details:", storageError);
+      throw storageError;
+    }
     
   } catch (error) {
     console.error("Error fetching company data:", error);
