@@ -22,8 +22,9 @@ export const getCompanyDataFromUrl = async (): Promise<CompanyData> => {
     
     // Fetch data from S3 using the company_id as the key
     const downloadResult = await downloadData({
-      path: `wttj-datascience-junglelabs/${companyId}.json`,
+      path: `${companyId}.json`,
       options: {
+        bucket: 'wttj-datascience-junglelabs'
         // Optional: Add caching options or other parameters if needed
       }
     }).result;
