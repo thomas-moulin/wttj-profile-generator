@@ -85,7 +85,7 @@ export interface Leader {
   name: string;
   title: string;
   background: string;
-  photoUrl: string;
+  linkedinUrl: string;
 }
 
 export interface DiversityStats {

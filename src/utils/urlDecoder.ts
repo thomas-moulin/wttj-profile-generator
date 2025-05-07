@@ -27,9 +27,8 @@ export const getCompanyDataFromUrl = async (): Promise<CompanyData> => {
     try {
       // Fetch data from S3 using the company_id as the key
       const downloadResult = await downloadData({
-        path: `${companyId}.json`,
+        path: 'company_data/${companyId}.json',
         options: {
-          // Alternatively, provide bucket name from console and associated region
           bucket: {
             bucketName: 'wttj-datascience-junglelabs',
             region: 'eu-central-1',
