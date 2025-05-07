@@ -10,6 +10,14 @@
       "StackName": "amplify-wttjprofilegenerator-dev-712a5",
       "StackId": "arn:aws:cloudformation:eu-central-1:775009712839:stack/amplify-wttjprofilegenerator-dev-712a5/52f4eec0-2b5a-11f0-b206-0a8f5c4c7c8b",
       "AmplifyAppId": "d2y572n4ixntc0"
+    },
+    "categories": {
+      "auth": {
+        "wttjprofilegenerator2a599885": {}
+      },
+      "storage": {
+        "s34b3c60ce": {}
+      }
     }
   }
 }

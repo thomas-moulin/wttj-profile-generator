@@ -1,0 +1,14 @@
+{
+  "resourceName": "s34b3c60ce",
+  "policyUUID": "4b3c60ce",
+  "bucketName": "wttj-datascience-junglelabs",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "READ"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
