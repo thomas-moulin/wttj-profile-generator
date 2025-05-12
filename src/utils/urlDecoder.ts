@@ -26,7 +26,10 @@ export const getCompanyDataFromUrl = async (): Promise<CompanyData> => {
       // Fetch data from S3 using the company_id as the key
       console.log("Attempting to access S3 file at: company_data/" + companyId + ".json");
       const downloadResult = await downloadData({
-        key: `company_data/${companyId}.json`
+        key: `company_data/${companyId}.json`,
+        options: {
+          accessLevel: 'guest'
+        }
       }).result;
       
       // Parse the JSON data from the file
