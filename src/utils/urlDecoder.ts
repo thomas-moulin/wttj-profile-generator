@@ -21,19 +21,13 @@ export const getCompanyDataFromUrl = async (): Promise<CompanyData> => {
     }
     
     console.log("Fetching data for company ID:", companyId);
-
-    
     
     try {
       // Fetch data from S3 using the company_id as the key
+      console.log("Attempting to access S3 file at: company_data/" + companyId + ".json");
       const downloadResult = await downloadData({
-        path: 'company_data/${companyId}.json',
-        options: {
-          bucket: {
-            bucketName: 'wttj-datascience-junglelabs',
-            region: 'eu-central-1',
-          }
-          }}).result;
+        key: `company_data/${companyId}.json`
+      }).result;
       
       // Parse the JSON data from the file
       const jsonData = await downloadResult.body.json();
