@@ -43,7 +43,9 @@ export const getCompanyDataFromUrl = async (): Promise<CompanyData> => {
             }
           }).result;
           
-          jsonData = await downloadResult.body.json();
+          // Use text() instead of json() as recommended in the error message
+          const responseText = await downloadResult.body.text();
+          jsonData = JSON.parse(responseText);
           console.log(`Successfully loaded data from ${path}`);
           break; // Exit loop if successful
         } catch (error) {
