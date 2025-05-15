@@ -59,7 +59,7 @@ const TeamSection: React.FC<TeamSectionProps> = ({
                   alt={member.name}
                   className="w-full h-96 object-cover"
                 />
-                <div className="absolute bottom-11 left-1 bg-black bg-opacity-70 text-white text-xs px-2 py-1">
+                <div className="absolute bottom-8 left-[145px] bg-black bg-opacity-70 text-white text-xs px-2 py-1">
                   01:54
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 flex justify-between items-center p-2">
